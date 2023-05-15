@@ -1,10 +1,3 @@
-import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
-} from "@heroicons/react/24/outline";
-
 const features = [
   {
     name: "Wrong Hits",
@@ -31,7 +24,7 @@ const features = [
   },
 ];
 
-export default function Example() {
+export default function Instructions() {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -49,12 +42,6 @@ export default function Example() {
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                    <feature.icon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
-                  </div>
                   {feature.name}
                 </dt>
                 <dd className="mt-2 text-base leading-7 text-gray-600">
