@@ -37,7 +37,7 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const signup_submit = async (data) => {
-    console.log(data);
+    // console.log(data);
     await axios
       .post("https://treasure-hunt-smoy.onrender.com/api/signup", data)
       .then((res) => {

@@ -47,7 +47,7 @@ const BeginGame = (props) => {
   const answer_submit = async (data) => {
     if (data.answer == answer) {
       setScore((x) => x + 1);
-      console.log("Score : ", score);
+      // console.log("Score : ", score);
       await axios.post(
         "https://treasure-hunt-smoy.onrender.com/updatescore",
         {
@@ -86,8 +86,8 @@ const BeginGame = (props) => {
         params,
       }
     );
-    console.log("kiii");
-    console.log(clue_details);
+    // console.log("kiii");
+    // console.log(clue_details);
     setImage(clue_details.data.image);
     setClue(clue_details.data.clue);
     setAnswer(clue_details.data.answer);
@@ -131,7 +131,7 @@ const BeginGame = (props) => {
       setWrongHits(temp.data.wronghits);
       // console.log(temp.data);
       let max_count = max.data[0].count;
-      console.log(temp.data.score);
+      // console.log(temp.data.score);
       if (temp.data.score == max_count) {
         setShowCompleteModal(true);
         setComp("");
@@ -148,8 +148,8 @@ const BeginGame = (props) => {
         setClue(clue_details.data.clue);
         setAnswer(clue_details.data.answer);
         setRightPath(clue_details.data.right_path);
-        console.log("hi");
-        console.log(clue_details);
+        // console.log("hi");
+        // console.log(clue_details);
         setComp(
           <Clue
             className="h-screen"
@@ -161,7 +161,7 @@ const BeginGame = (props) => {
         );
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -197,8 +197,8 @@ const BeginGame = (props) => {
         params,
       }
     );
-    console.log("kiii");
-    console.log(clue_details);
+    // console.log("kiii");
+    // console.log(clue_details);
     setImage(clue_details.data.image);
     setClue(clue_details.data.clue);
     setAnswer(clue_details.data.answer);

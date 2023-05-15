@@ -22,7 +22,7 @@ const Leaderboard = () => {
       index = JSON.parse(localStorage.getItem("index"));
       params.index = --index;
       localStorage.setItem("index", JSON.stringify(index));
-      console.log("index : " + index);
+      // console.log("index : " + index);
       axios
         .get("https://treasure-hunt-smoy.onrender.com/playerdetail", {
           headers,
@@ -31,10 +31,10 @@ const Leaderboard = () => {
         .then((res) => {
           // users = res.data;
           setUsers(res.data);
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };
@@ -53,7 +53,7 @@ const Leaderboard = () => {
       index = JSON.parse(localStorage.getItem("index"));
       params.index = ++index;
       localStorage.setItem("index", JSON.stringify(index));
-      console.log("index : " + index);
+      // console.log("index : " + index);
       axios
         .get("https://treasure-hunt-smoy.onrender.com/playerdetail", {
           headers,
@@ -62,10 +62,10 @@ const Leaderboard = () => {
         .then((res) => {
           // users = res.data;
           setUsers(res.data);
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };
@@ -87,10 +87,10 @@ const Leaderboard = () => {
       .then((res) => {
         // users = res.data;
         setUsers(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
   return (

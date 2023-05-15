@@ -30,14 +30,14 @@ const FormModal = () => {
 
   const handleImage = () => {
     const files = document.getElementById("file").files;
-    console.log(files);
+    // console.log(files);
   };
   const setPetDetails = async () => {
     const petname = document.getElementById("petname");
     const location = document.getElementById("location");
     const description = document.getElementById("desc");
     const files = document.getElementById("file").files;
-    console.log(files);
+    // console.log(files);
     if (
       !petname.value ||
       !location.value ||
@@ -68,8 +68,8 @@ const FormModal = () => {
           { headers, params }
         )
         .then((url) => {
-          console.log("url : ");
-          console.log(url);
+          // console.log("url : ");
+          // console.log(url);
           axios
             .post(
               "https://treasure-hunt-smoy.onrender.com/setclue2",
@@ -82,20 +82,20 @@ const FormModal = () => {
               { headers, params }
             )
             .then((res) => {
-              console.log("It worked..");
-              console.log("Data: ", res.data);
-              console.log("Array value changed:");
+              // console.log("It worked..");
+              // console.log("Data: ", res.data);
+              // console.log("Array value changed:");
               setPageRefresh(!pageRefresh);
             })
             .catch((err) => {
-              console.log("Error!");
+              // console.log("Error!");
             });
         })
         .catch((e) => console.log(e));
 
       alert("Image uploaded successfully");
-      console.log("temp : ");
-      console.log(temp);
+      // console.log("temp : ");
+      // console.log(temp);
 
       //database
       //   await axios

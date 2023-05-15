@@ -7,6 +7,7 @@ import MenuBar from "./begingame";
 import Leaderboard from "./leaderboard";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Instructions from "./instructions";
 
 const navigation = [
   { name: "Main Menu", href: "#", current: true },
@@ -43,6 +44,7 @@ export default function Example() {
     let comp_key = e.target.getAttribute("comp_key");
     if (comp_key == 0) setComp(<MenuBar visibility={true} />);
     else if (comp_key == 1) setComp(<Leaderboard />);
+    else if (comp_key == 2) setComp(<Instructions />);
   };
 
   const loadProfile = async () => {

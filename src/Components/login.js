@@ -40,11 +40,11 @@ export default function Example() {
 
   const login_submit = async (data) => {
     // data["admin"] = admin;
-    console.log(data);
+    // console.log(data);
     await axios
       .post("https://treasure-hunt-smoy.onrender.com/api/login", data)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.setItem(
           "accesstoken",
           JSON.stringify(res.data.accessToken)
