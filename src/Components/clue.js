@@ -10,7 +10,7 @@ const Clue = (props) => {
         <img
           //   src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg"
           src={props.image}
-          alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant."
+          alt="clue image"
           className="h-full w-full object-cover object-center"
         />
       </div>
