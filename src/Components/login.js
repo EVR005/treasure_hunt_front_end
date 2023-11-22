@@ -15,7 +15,7 @@
 import { useForm, useController, Controller } from "react-hook-form";
 import axios from "axios";
 import { Switch } from "@headlessui/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
@@ -38,9 +38,12 @@ export default function Example() {
 
   const navigate = useNavigate();
 
+  const submitref = useRef(null);
+
   const login_submit = async (data) => {
     // data["admin"] = admin;
     // console.log(data);
+    submitref.current.disabled = true;
     await axios
       .post("https://treasure-hunt-smoy.onrender.com/api/login", data)
       .then((res) => {
@@ -50,12 +53,14 @@ export default function Example() {
           JSON.stringify(res.data.accessToken)
         );
         localStorage.setItem("player_id", JSON.stringify(res.data.id));
+        submitref.current.disabled = false;
         if (res.status == 200) {
           if (res.data.admin) navigate("/adminHome");
           else navigate("/userHome");
         }
       })
       .catch((err) => {
+        submitref.current.disabled = false;
         setShowExistModal(true);
       });
   };
@@ -171,14 +176,14 @@ export default function Example() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
+                {/* <div className="text-sm">
                   <a
                     href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
                   </a>
-                </div>
+                </div> */}
               </div>
               <div className="mt-2">
                 <input
@@ -199,6 +204,7 @@ export default function Example() {
 
             <div>
               <button
+                ref={submitref}
                 type="submit"
                 onClick={handleSubmit(login_submit)}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const FormModal = () => {
+  const [sizeTooLargeModal, setSizeTooLargeModal] = useState(true);
   const [showModal, setShowModal] = useState(true);
   const [petData, setPetData] = useState([]);
   const [url, setUrl] = useState([]);
@@ -41,7 +42,7 @@ const FormModal = () => {
     if (
       !petname.value ||
       !location.value ||
-      !description.value ||
+      // !description.value ||
       files.length === 0
     ) {
       alert("Please fill all the fields.");
@@ -50,6 +51,9 @@ const FormModal = () => {
 
     if (files.length === 1) {
       var base64 = await setFileToBase(files[0]);
+      var imgType = files[0].type;
+      const match = imgType.match(/\/([^/]+)$/);
+      console.log("\nimgTyope :" + match[1]);
       // uploadSingleImage(base64);
 
       const token = JSON.parse(localStorage.getItem("accesstoken"));
@@ -64,6 +68,7 @@ const FormModal = () => {
           "https://treasure-hunt-smoy.onrender.com/setclue",
           {
             image: base64,
+            imgtype: match[1],
           },
           { headers, params }
         )
@@ -75,7 +80,7 @@ const FormModal = () => {
               "https://treasure-hunt-smoy.onrender.com/setclue2",
               {
                 clue: `${petname.value}`,
-                answer: `${location.value}`,
+                answer: `${location.value.replaceAll(" ", "").toLowerCase()}`,
                 right_path: true,
                 image: url.data.image,
               },
@@ -85,122 +90,57 @@ const FormModal = () => {
               // console.log("It worked..");
               // console.log("Data: ", res.data);
               // console.log("Array value changed:");
+              alert("Image uploaded successfully");
               setPageRefresh(!pageRefresh);
             })
             .catch((err) => {
-              // console.log("Error!");
+              console.log("image too large");
+              setSizeTooLargeModal(true);
             });
         })
-        .catch((e) => console.log(e));
-
-      alert("Image uploaded successfully");
-      // console.log("temp : ");
-      // console.log(temp);
-
-      //database
-      //   await axios
-      //     .post(
-      //       "http://localhost:5000/setclue2",
-      //       {
-      //         clue: `${petname.value}`,
-      //         answer: `${location.value}`,
-      //         right_path: true,
-      //         image: url,
-      //       },
-      //       { headers, params }
-      //     )
-      //     .then((res) => {
-      //       console.log("It worked..");
-      //       console.log("Data: ", res.data);
-      //       console.log("Array value changed:");
-      //       setPageRefresh(!pageRefresh);
-      //     })
-      //     .catch((err) => {
-      //       console.log("Error!");
-      //     });
+        .catch((e) => {
+          if (e.response.status === 413) setSizeTooLargeModal(true);
+        });
     }
-    // else {
-    //   //base64 conversion
-    //   const base64s = [];
-    //   for (var i = 0; i < files.length; i++) {
-    //     var base64 = await setFileToBase(files[i]);
-    //     base64s.push(base64);
-    //   }
-
-    //   //url generation
-    //   let temp = await axios
-    //     .post("http://localhost:5000/api/imageUpload/multipleImages", {
-    //       images: base64s,
-    //     })
-    //     .catch((e) => console.log(e));
-
-    //   alert("Image uploaded successfully");
-
-    //   //database
-    //   await axios
-    //     .post("http://localhost:5000/api/pets", {
-    //       petname: `${petname.value}`,
-    //       location: `${location.value}`,
-    //       description: `${description.value}`,
-    //       image: temp.data.images,
-    //       email: `${localStorage.getItem("email")}`,
-    //     })
-    //     .then((res) => {
-    //       console.log("It worked..");
-    //       console.log("Data: ", res.data);
-    //       console.log("Array value changed:");
-    //       setPageRefresh(!pageRefresh);
-    //       // setUrl((value) => []);
-    //     })
-    //     .catch((err) => {
-    //       console.log("Error!");
-    //     });
-    // }
   };
-
-  //   const getPetDet = async () => {
-  //     await axios
-  //       .get("http://localhost:5000/api/pets/getPet", {
-  //         params: {
-  //           email: `${localStorage.getItem("email")}`,
-  //         },
-  //       })
-  //       .then((res) => {
-  //         console.log("Form MOdal", res.data.pendingPets);
-  //         setPetData(res.data.pendingPets);
-  //       })
-  //       .catch((err) => {
-  //         console.log("Error!");
-  //       });
-  //   };
-  //   useEffect(() => {
-  //     getPetDet();
-  //   }, [pageRefresh]);
 
   return (
     <div>
-      {/* <div className="flex justify-center align-center mt-8"> */}
-      {/* <button
-          className="bg-blue-500 hover:bg-blue-700 text-white mx-5 font-bold py-2 px-4 rounded"
-          onClick={() => setShowModal(true)}
-        >
-          Submit Request
-        </button> */}
-      {/* </div> */}
-      {/* 
-      {petData.length !== 0 ? (
-        <LoopData data={petData}></LoopData>
-      ) : (
-        <>
-          <h1 className="flex text-2xl justify-center align-center mt-4">
-            There are no pending requests!
-          </h1>
-        </>
-      )} */}
-      {/* {showModal ? (
-        <> */}
       {/* <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"> */}
-      <div className="relative w-8/12 mb-6 mx-auto max-w-3xl">
+      <div className="relative w-8/12 mb-6 mx-auto max-w-3xl z-40">
+        {sizeTooLargeModal ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+              <div className="relative w-8/12 my-6 mx-auto max-w-3xl">
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                    <h3 className="text-2xl justify-center align-center font-semibold">
+                      Oh No!
+                    </h3>
+                  </div>
+                  {/*body*/}
+                  <div className="text-3xl leading-none font-semibold">
+                    {" "}
+                    Incorrect Username or Password!
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                    <button
+                      className="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={setSizeTooLargeModal(false)}
+                    >
+                      Okay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
         {/*content*/}
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           {/*header*/}
@@ -230,7 +170,7 @@ const FormModal = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="petname"
                 type="text"
-                placeholder="Name of the dog to be admitted"
+                placeholder="Enter Text Clue"
               />
             </div>
             <div className="mb-6">
@@ -244,10 +184,10 @@ const FormModal = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
                 type="text"
-                placeholder="City name"
+                placeholder="Enter Answer"
               />
             </div>
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="desc"
@@ -260,7 +200,7 @@ const FormModal = () => {
                 type="text"
                 placeholder="Longer description preferred"
               ></textarea>
-            </div>
+            </div> */}
             <div className="mb-6">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -303,6 +243,7 @@ const FormModal = () => {
       {/* </>
       ) : null} */}
     </div>
+    // </div>
   );
 };
 

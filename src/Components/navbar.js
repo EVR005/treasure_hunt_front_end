@@ -42,9 +42,14 @@ export default function Example() {
     // );
     // console.log(e.target);
     let comp_key = e.target.getAttribute("comp_key");
+    console.log(comp_key);
     if (comp_key == 0) setComp(<MenuBar visibility={true} />);
     else if (comp_key == 1) setComp(<Leaderboard />);
     else if (comp_key == 2) setComp(<Instructions />);
+    for (let i = 0; i < navigation.length; i++) {
+      if (i == comp_key) navigation[i].current = true;
+      else navigation[i].current = false;
+    }
   };
 
   const loadProfile = async () => {
@@ -99,10 +104,9 @@ export default function Example() {
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
                       {navigation.map((item, k) => (
-                        <a
+                        <button
                           key={item.name}
                           comp_key={k}
-                          href={item.href}
                           onClick={setProps}
                           className={classNames(
                             item.current
@@ -113,7 +117,7 @@ export default function Example() {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -122,12 +126,11 @@ export default function Example() {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2012/10/threelines.png"
-                          alt=""
+                        <Bars3Icon
+                          className="block h-6 w-6"
+                          aria-hidden="true"
                         />
                       </Menu.Button>
                     </div>
@@ -178,10 +181,12 @@ export default function Example() {
 
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
-                {navigation.map((item) => (
+                {navigation.map((item, k) => (
                   <Disclosure.Button
                     key={item.name}
                     as="a"
+                    comp_key={k}
+                    onClick={setProps}
                     href={item.href}
                     className={classNames(
                       item.current

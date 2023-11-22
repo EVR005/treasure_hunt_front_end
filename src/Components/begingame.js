@@ -1,5 +1,5 @@
 // import NavBar from "./navbar";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Clue from "./clue";
 import { useForm } from "react-hook-form";
@@ -36,6 +36,9 @@ const BeginGame = (props) => {
       // answer={answer ? answer : ""}
     ></Clue>
   );
+
+  const submitref = useRef(null);
+
   const token = JSON.parse(localStorage.getItem("accesstoken"));
   const headers = { Authorization: `Bearer ${token}` };
   let params = { id: JSON.parse(localStorage.getItem("player_id")) };
@@ -45,6 +48,9 @@ const BeginGame = (props) => {
   // }, []);
 
   const answer_submit = async (data) => {
+    data.answer = data.answer.replaceAll(" ", "").toLowerCase();
+    console.log(data);
+    submitref.current.disabled = true;
     if (data.answer == answer) {
       setScore((x) => x + 1);
       // console.log("Score : ", score);
@@ -74,6 +80,8 @@ const BeginGame = (props) => {
       setShowIncorrectModal(true);
       setWrongHits((x) => ++x);
     }
+    setValue("answer", "");
+    submitref.current.disabled = false;
   };
 
   const nextQuestion = async () => {
@@ -404,6 +412,7 @@ const BeginGame = (props) => {
                 </div>
                 <button
                   type="submit"
+                  ref={submitref}
                   onClick={handleSubmit(answer_submit)}
                   className="mt-5 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
