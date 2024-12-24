@@ -94,51 +94,57 @@ const Leaderboard = () => {
       });
   }, []);
   return (
-    <div>
-      <table className="table-auto w-screen mt-40">
-        <thead>
-          <th></th>
-          <th>Player Name</th>
-          <th>Score</th>
-        </thead>
-        <tbody>
-          {users &&
-            users.map((val, k) => (
-              <tr user_key={k}>
-                <td>{k + 1}</td>
-                <td>{val.userlogin.username}</td>
-                <td>{val.score}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-
-      <div>
-        <nav
-          className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-          aria-label="Pagination"
-        >
-          <button
-            onClick={leftAction}
-            className="w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-
-            // className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+    <div className="m-2">
+      <div className="grid bg-indigo-950 divide-y-2 divide-white">
+        <div className="grid grid-cols-3 divide-x-2 divide-white text-white text-2xl">
+          <div className="py-5 flex justify-center items-center">S.No</div>
+          <div className="flex justify-center items-center">Player Name</div>
+          <div className="flex justify-center items-center">Score</div>
+        </div>
+        {users &&
+          users.map((val, k) => (
+            <div
+              user_key={k}
+              className="grid grid-cols-3 divide-x-2 divide-white text-white text-lg"
+            >
+              <div className="flex justify-center items-center py-5">
+                {k + 1}
+              </div>
+              <div className="flex justify-center items-center">
+                {val.userlogin.username}
+              </div>
+              <div className="flex justify-center items-center">
+                {val.score}
+              </div>
+            </div>
+          ))}
+        <div className="flex justify-center py-2 bg-indigo-950">
+          <div
+            className="grid grid-cols-2 place-items-center w-full"
+            aria-label="Pagination"
           >
-            <span>Previous</span>
-            {/* <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" /> */}
-          </button>
+            <button
+              onClick={leftAction}
+              className="w-fit rounded-md bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
-          <button
-            href="#"
-            onClick={rightAction}
-            className="w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              // className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              {/* <span>Prev</span> */}
+              <ChevronLeftIcon className="h-9 w-9" aria-hidden="true" />
+            </button>
 
-            // className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-          >
-            <span>Next</span>
-            {/* <ChevronRightIcon className="h-5 w-5" aria-hidden="true" /> */}
-          </button>
-        </nav>
+            <button
+              href="#"
+              onClick={rightAction}
+              className="w-fit rounded-md bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+
+              // className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              {/* <span>Next</span> */}
+              <ChevronRightIcon className="h-9 w-9" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
