@@ -224,7 +224,7 @@ const BeginGame = (props) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full mt-36">
+    <div className="flex justify-center items-center h-full min-[450px]:mt-36">
       {/* <NavBar></NavBar> */}
       <div
         className="mt-24 min-[768px]:grid min-[768px]:grid-rows-1 min-[768px]:grid-cols-2 max-[768px]:gap-y-12 max-[768px]:flex max-[768px]:flex-wrap max-[768px]:justify-center gap-x-12"
