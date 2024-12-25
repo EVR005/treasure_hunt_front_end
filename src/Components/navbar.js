@@ -88,7 +88,7 @@ export default function Example() {
   };
 
   return (
-    <div className="fixed w-full">
+    <div className="">
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
