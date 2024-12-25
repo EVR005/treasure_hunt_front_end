@@ -234,7 +234,7 @@ const BeginGame = (props) => {
           type="submit"
           //   onClick={handleSubmit(signup_submit)}
           onClick={resumegame}
-          className="block w-80 text-4xl h-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="block w-80 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Let's begin
         </button>
@@ -242,7 +242,7 @@ const BeginGame = (props) => {
           type="submit"
           onClick={Restart}
           //   onClick={handleSubmit(signup_submit)}
-          className="block w-80 text-4xl h-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="block w-80 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Restart
         </button>

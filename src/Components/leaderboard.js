@@ -94,7 +94,7 @@ const Leaderboard = () => {
       });
   }, []);
   return (
-    <div className="m-2">
+    <div className="m-1">
       <div className="grid bg-indigo-950 divide-y-2 divide-white">
         <div className="grid grid-cols-3 divide-x-2 divide-white text-white text-2xl">
           <div className="py-5 flex justify-center items-center">S.No</div>
@@ -125,7 +125,7 @@ const Leaderboard = () => {
           >
             <button
               onClick={leftAction}
-              className="w-fit rounded-md bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="w-fit rounded-full bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
               // className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
@@ -136,7 +136,7 @@ const Leaderboard = () => {
             <button
               href="#"
               onClick={rightAction}
-              className="w-fit rounded-md bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="w-fit rounded-full bg-indigo-950 p-1 text-center text-sm border-2 font-semibold text-white shadow-sm hover:bg-white hover:text-indigo-950 hover:border-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
               // className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >

@@ -26,30 +26,33 @@ const features = [
 
 export default function Instructions() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-indigo-950 py-24 sm:py-32 m-1">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Instructions
           </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-white">
             This is a kinda treasure hunt game with the answers inscribed in
             images. Clues given above each image have been provided as help.
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <div key={feature.name} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
+        <div className="mt-24 min-[768px]:grid min-[768px]:grid-rows-2 min-[768px]:grid-cols-2 max-[768px]:flex max-[768px]:flex-wrap max-[768px]:justify-center min-[768px]:gap-x-2 min-[768px]:gap-y-12">
+          {features.map((feature, featureKey) => (
+            <div
+              key={featureKey}
+              className="max-[768px]:pb-6 flex justify-center"
+            >
+              <div className="grid grid-rows-2 min-[768px]:w-96">
+                <div className="text-xl font-bold leading-7 text-white">
                   {feature.name}
-                </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-600">
+                </div>
+                <div className="text-lg leading-7 text-white">
                   {feature.description}
-                </dd>
+                </div>
               </div>
-            ))}
-          </dl>
+            </div>
+          ))}
         </div>
       </div>
     </div>
