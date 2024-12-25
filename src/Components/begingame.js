@@ -224,17 +224,17 @@ const BeginGame = (props) => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="flex justify-center items-center h-full mt-36">
       {/* <NavBar></NavBar> */}
       <div
-        className="justify-center items-center h-screen w-screen space-x-10"
+        className="mt-24 min-[768px]:grid min-[768px]:grid-rows-1 min-[768px]:grid-cols-2 max-[768px]:gap-y-12 max-[768px]:flex max-[768px]:flex-wrap max-[768px]:justify-center gap-x-12"
         style={{ display: visibility ? "flex" : "none" }}
       >
         <button
           type="submit"
           //   onClick={handleSubmit(signup_submit)}
           onClick={resumegame}
-          className="block w-80 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="block w-60 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Let's begin
         </button>
@@ -242,7 +242,7 @@ const BeginGame = (props) => {
           type="submit"
           onClick={Restart}
           //   onClick={handleSubmit(signup_submit)}
-          className="block w-80 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="block w-60 text-4xl h-40 rounded-md bg-indigo-950 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Restart
         </button>

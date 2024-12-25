@@ -1,6 +1,11 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import Profile from "./profile";
 import MenuBar from "./begingame";
@@ -83,7 +88,7 @@ export default function Example() {
   };
 
   return (
-    <div>
+    <div className="fixed w-full">
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -91,12 +96,12 @@ export default function Example() {
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Disclosure.Button className="border-2 p-1 border-gray-400 rounded-full inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block h-9 w-9" aria-hidden="true" />
                     ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block h-9 w-9" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -126,10 +131,10 @@ export default function Example() {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button className="flex border-2 p-1 border-gray-400 rounded-full bg-gray-800 text-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
-                        <Bars3Icon
-                          className="block h-6 w-6"
+                        <UserIcon
+                          className="block h-9 w-9"
                           aria-hidden="true"
                         />
                       </Menu.Button>
